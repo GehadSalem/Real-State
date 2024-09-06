@@ -7,7 +7,7 @@ export default defineConfig({
     proxy:{
       '/api':{
         target: 'https://real-state-api-1dpy.vercel.app/',
-        secure: true,
+        secure: false,
       },
     },
   },
