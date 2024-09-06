@@ -4,9 +4,11 @@ import react from '@vitejs/plugin-react-swc';
 export default defineConfig({
   server: {
     proxy: {
-      '/': {
+      '/api': {
         target: 'https://real-state-api-1dpy.vercel.app',
+        changeOrigin: true,
         secure: false,
+        rewrite: (path) => path.replace(/^\/api/, ''), // تحقق من أن هذا يتطابق مع المسارات في الـ Backend
       },
     },
   },
