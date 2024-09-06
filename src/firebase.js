@@ -6,7 +6,7 @@ import { initializeApp } from "firebase/app";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBMEA9_mJV155UQLVOTvW9l959KVJK5bug",
-  authDomain: "https://real-state-api-mocha.vercel.app/",
+  authDomain: "real-state-api-mocha.vercel.app",
   projectId: "mern-state-40a4f",
   storageBucket: "mern-state-40a4f.appspot.com",
   messagingSenderId: "798614973604",
