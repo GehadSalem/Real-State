@@ -37,7 +37,7 @@ export default function UpdateListing() {
 
   useEffect(()=>{
     const fetchingListing = async() => {
-        const res = await fetch(`/api/listing/get/${listingId}`);
+        const res = await fetch(`/listing/get/${listingId}`);
         const data = await res.json();
         if(data.success === false){
           console.log(data.message);
@@ -149,7 +149,7 @@ export default function UpdateListing() {
       }
       setError(false);
       setLoading(true);
-      const res = await fetch(`/api/listing/update/${listingId}`, {
+      const res = await fetch(`/listing/update/${listingId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
