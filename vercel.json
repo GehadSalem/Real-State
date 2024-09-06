@@ -12,7 +12,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "https://real-state-api-mocha.vercel.app/api/$1"
+      "dest": "https://real-state-api-mocha.vercel.app"
     },
     {
       "src": "/(.*)",
