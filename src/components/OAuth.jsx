@@ -1,51 +1,44 @@
-import React from 'react';
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { app } from '../firebase.js';
-import { useDispatch } from 'react-redux';
-import { signInSuccess } from '../store/pages/userSlice.js';
+import React from 'react'
+import {getAuth, GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
+import { app } from '../firebase.js'
+import { useDispatch, useSelector } from "react-redux";
+import { signInStart, signInSuccess, SignInFailure } from "../store/pages/userSlice.js";
 import { useNavigate } from 'react-router-dom';
 import { BASEURL } from '../data/dataApi.jsx';
 
 export default function OAuth() {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleGoogleClick = async () => {
-    try {
-      const provider = new GoogleAuthProvider();
-      const auth = getAuth(app);
+    const handleGoogleClick = async()=>{
+        try {
+            const provider = new GoogleAuthProvider()
+            const auth = getAuth(app)
 
-      const result = await signInWithPopup(auth, provider);
 
-      // Fetch user info from backend
-      const res = await fetch(`${BASEURL}/api/auth/google`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: result.user.displayName,
-          email: result.user.email,
-          photo: result.user.photoURL,
-        }),
-      });
-      const data = await res.json();
-      dispatch(signInSuccess(data));
-      navigate('/');
+            const result = await signInWithPopup(auth, provider)
 
-      console.log(result);
-    } catch (error) {
-      console.error("Could not sign in with Google:", error);
+            const res = await fetch(`${BASEURL}/api/auth/google`, {
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    photo: result.user.photoURL
+                })
+            })
+            const data = await res.json()
+            dispatch(signInSuccess(data))
+    navigate('/');
+
+            console.log(result);
+        } catch (error) {
+            console.log("could not sign in with google", error);
+        }
     }
-  };
-
   return (
-    <button
-      onClick={handleGoogleClick}
-      type='button'
-      className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
-    >
-      Continue with Google
-    </button>
-  );
+    <button onClick={handleGoogleClick} type='button' className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95'>continue with google</button>
+  )
 }
