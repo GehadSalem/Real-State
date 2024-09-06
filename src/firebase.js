@@ -3,14 +3,13 @@
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { BASEURL } from "./data/dataApi.jsx";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBMEA9_mJV155UQLVOTvW9l959KVJK5bug",
-  authDomain: `real-state-api-mocha.vercel.app`,
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: 'mern-state-40a4f.firebaseapp.com',
   projectId: "mern-state-40a4f",
   storageBucket: "mern-state-40a4f.appspot.com",
   messagingSenderId: "798614973604",
