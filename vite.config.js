@@ -5,10 +5,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://real-state-api-1dpy.vercel.app/api',
-        changeOrigin: true,
+        target: 'https://real-state-api-1dpy.vercel.app/',
         secure: false,
-        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },
