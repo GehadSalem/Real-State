@@ -21,6 +21,7 @@ import { CiEdit } from "react-icons/ci";
 import sold from "../assets/sold.png";
 import rented from "../assets/rented.png";
 import { FiEdit } from "react-icons/fi";
+import { BASEURL } from "../data/dataApi.jsx";
 
 export default function Listing() {
   SwiperCore.use(Navigation);
@@ -37,7 +38,7 @@ export default function Listing() {
     const fetchingListing = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`/api/listing/get/${listingId}`);
+        const res = await fetch(`${BASEURL}/api/listing/get/${listingId}`);
         const data = await res.json();
         if (data.success === false) {
           console.log(data.message);

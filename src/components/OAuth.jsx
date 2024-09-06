@@ -4,6 +4,7 @@ import { app } from '../firebase.js'
 import { useDispatch, useSelector } from "react-redux";
 import { signInStart, signInSuccess, SignInFailure } from "../store/pages/userSlice.js";
 import { useNavigate } from 'react-router-dom';
+import { BASEURL } from '../data/dataApi.jsx';
 
 export default function OAuth() {
     const dispatch = useDispatch();
@@ -17,7 +18,7 @@ export default function OAuth() {
 
             const result = await signInWithPopup(auth, provider)
 
-            const res = await fetch('/api/auth/google', {
+            const res = await fetch(`${BASEURL}/api/auth/google`, {
                 method: 'POST',
                 headers:{
                     'Content-Type': 'application/json',

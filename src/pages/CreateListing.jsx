@@ -8,6 +8,7 @@ import {
 import { app } from "../firebase.js";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { BASEURL } from "../data/dataApi.jsx";
 export default function CreateListing() {
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -134,7 +135,7 @@ export default function CreateListing() {
       }
       setError(false);
       setLoading(true);
-      const res = await fetch("/api/listing/create", {
+      const res = await fetch(`${BASEURL}/api/listing/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

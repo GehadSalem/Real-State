@@ -9,6 +9,7 @@ import { app } from "../firebase.js";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../components/Loading.jsx";
+import { BASEURL } from "../data/dataApi.jsx";
 export default function UpdateListing() {
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ export default function UpdateListing() {
 
   useEffect(()=>{
     const fetchingListing = async() => {
-        const res = await fetch(`/api/listing/get/${listingId}`);
+        const res = await fetch(`${BASEURL}/api/listing/get/${listingId}`);
         const data = await res.json();
         if(data.success === false){
           console.log(data.message);
@@ -149,7 +150,7 @@ export default function UpdateListing() {
       }
       setError(false);
       setLoading(true);
-      const res = await fetch(`/api/listing/update/${listingId}`, {
+      const res = await fetch(`${BASEURL}/api/listing/update/${listingId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

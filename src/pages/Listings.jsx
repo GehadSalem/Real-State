@@ -6,6 +6,7 @@ import { Navigation } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import 'swiper/css/bundle';
 import Loading from '../components/Loading.jsx';
+import { BASEURL } from '../data/dataApi.jsx';
 
 export default function Listings() {
     const [offerListings, setOfferListings] = useState([]);
@@ -19,7 +20,7 @@ export default function Listings() {
     const fetchOfferListings = async () => {
         setLoading(true);
       try {
-        const res = await fetch('/api/listing/get?offer=true&limit=4');
+        const res = await fetch(`${BASEURL}/api/listing/get?offer=true&limit=4`);
         const data = await res.json();
         setOfferListings(data);
         fetchRentListings();
@@ -33,7 +34,7 @@ export default function Listings() {
           setLoading(true);
 
       try {
-        const res = await fetch('/api/listing/get?type=rent&limit=4');
+        const res = await fetch(`${BASEURL}/api/listing/get?type=rent&limit=4`);
         const data = await res.json();
         setRentListings(data);
         fetchSaleListings();
@@ -48,7 +49,7 @@ export default function Listings() {
         setLoading(true);
 
       try {
-        const res = await fetch('/api/listing/get?type=sale&limit=4');
+        const res = await fetch(`${BASEURL}/api/listing/get?type=sale&limit=4`);
         const data = await res.json();
         setSaleListings(data);
       } catch (error) {
