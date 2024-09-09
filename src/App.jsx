@@ -26,7 +26,6 @@ export default function App() {
         <Route path="/listing/:id" element={<Listing />} />
         <Route path="/search" element={<Search />} />
         <Route path="/listings" element={<Listings />} />
-
         <Route element={<PrivetRoute />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/create-listing" element={<CreateListing />} />
