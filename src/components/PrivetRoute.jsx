@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-export default function PrivetRoute() {
-
-  const {currentUser} = useSelector(state=> state.user);
-  return currentUser ? <Outlet /> : <Navigate to='/sign-in' />
+export default function PrivetRoute({ children }) {
+  const { currentUser } = useSelector((state) => state.user);
+  
+  // إذا كان المستخدم مسجلاً الدخول، عرض المكون (children)، وإلا إعادة التوجيه إلى صفحة تسجيل الدخول
+  return currentUser ? children : <Navigate to='/sign-in' />;
 }
